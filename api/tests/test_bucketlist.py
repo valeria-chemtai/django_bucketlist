@@ -34,10 +34,21 @@ class TestBucketList(APITestCase):
         self.assertEqual(resp2.status_code, 400)
         self.assertEqual(Bucketlist.objects.count(), 1)
 
-    # def test_bucketlist_update(self):
-    #     resp1 = self.client.post(self.create_url, self.data)
-    #     self.assertEqual(resp1.status_code, 201)
+    def test_bucketlist_update(self):
+        new_data = {'name': 'Updated Bucketlist'}
+        resp1 = self.client.post(self.create_url, self.data)
+        self.assertEqual(resp1.status_code, 201)
+        # import ipdb; ipdb.set_trace()
+        url = reverse('bucketlist-detail', None, {resp1.data['pk']})
+        resp2 = self.client.put(url, new_data)
+        self.assertEqual(resp2.status_code, 200)
+        self.assertEqual(Bucketlist.objects.count(), 1)
+        self.assertEqual('Updated Bucketlist', resp2.data.get('name'))
 
-
-    # def test_bucketlist_delete(self):
-    #     pass
+    def test_bucketlist_delete(self):
+        resp1 = self.client.post(self.create_url, self.data)
+        self.assertEqual(resp1.status_code, 201)
+        url = reverse('bucketlist-detail', None, {resp1.data['pk']})
+        resp2 = self.client.delete(url)
+        self.assertEqual(resp2.status_code, 204)
+        self.assertEqual(Bucketlist.objects.count(), 0)
