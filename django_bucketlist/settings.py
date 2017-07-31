@@ -37,14 +37,10 @@ NOSE_ARGS = [
     '--with-coverage',
     '--cover-erase',
     '--cover-inclusive',
-    '--cover-package=api'
+    '--cover-package=api',
+    '--nocapture',
+    '--nologcapture',
 ]
-
-# NOSE_ARGS = [
-#     '--with-coverage',
-#     '--nocapture',
-#     '--nologcapture'
-# ]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
