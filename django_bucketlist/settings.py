@@ -48,10 +48,6 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 5
 }
 
-GRAPHENE = {
-    'SCHEMA': 'schema.schema'
-}
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -62,7 +58,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'api.apps.ApiConfig',
     'django_nose',
-    'graphene_django',
 ]
 
 MIDDLEWARE = [
